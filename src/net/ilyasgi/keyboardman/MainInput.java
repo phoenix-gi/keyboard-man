@@ -29,6 +29,10 @@ public class MainInput implements KeyListener {
             if (keyEvent.getKeyCode() == KeyEvent.VK_SPACE) {
                 model.start();
             }
+        } else {
+            if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                model.stop();
+            }
         }
         MainPanel.getPanel().repaint();
     }
