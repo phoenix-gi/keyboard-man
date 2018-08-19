@@ -25,10 +25,14 @@ final class MainWindow {
         frame.setResizable(false);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame.add(MainPanel.getPanel());
+        frame.setFocusable(false);
     }
 
     void show() {
         frame.setVisible(true);
+        MainPanel.getPanel().grabFocus();
     }
 
     static MainWindow getInstance() {
