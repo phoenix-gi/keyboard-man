@@ -2,12 +2,14 @@ package net.ilyasgi.keyboardman;
 
 import javax.swing.JPanel;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Color;
 
 final class MainPanel {
     private static MainPanel instance;
 
     private JPanel panel;
+    private Screen screen;
 
     private MainPanel() {
         buildPanel();
@@ -21,6 +23,9 @@ final class MainPanel {
                 super.paint(g);
                 g.setColor(Color.WHITE);
                 g.fillRect(0, 0, getWidth(), getHeight());
+                if (screen != null) {
+                    screen.paint((Graphics2D) g);
+                }
             }
         };
     }
@@ -30,5 +35,10 @@ final class MainPanel {
             instance = new MainPanel();
         }
         return instance.panel;
+    }
+
+    static void setScreen(Screen screen) {
+        instance.screen = screen;
+        instance.panel.repaint();
     }
 }
