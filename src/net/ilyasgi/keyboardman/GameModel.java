@@ -26,6 +26,10 @@ class GameModel {
         currentSymbol = getRandomChar();
     }
 
+    void stop() {
+        start = false;
+    }
+
     boolean isStart() {
         return start;
     }
