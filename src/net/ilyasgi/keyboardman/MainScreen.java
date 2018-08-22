@@ -29,7 +29,23 @@ public class MainScreen implements Screen {
         g2d.drawString(title, x, y);
         g2d.setColor(Color.BLUE);
         if (model.isStart()) {
-            g2d.drawString("Type " + String.valueOf(model.getCurrentSymbol()) + "", 30, 300);
+            g2d.setColor(Color.LIGHT_GRAY);
+            g2d.drawString(String.valueOf(model.getNextSymbol()), 140 + metrics.stringWidth("Type "), 300 - metrics.getHeight());
+            g2d.setColor(Color.BLACK);
+            String currentType = "Type " + String.valueOf(model.getCurrentSymbol());
+            g2d.drawString(currentType, 140, 300);
+            g2d.setColor(Color.GREEN);
+            String success = "";
+            for (char c : model.getSuccess()) {
+                success += " " + c;
+            }
+            g2d.drawString(success, 140 + metrics.stringWidth(currentType), 300);
+
+            g2d.setColor(Color.RED);
+
+            for (int i = 0; i < model.getFailed().length; i++) {
+                g2d.drawString(String.valueOf(model.getFailed()[i]), 140 + metrics.stringWidth("Type "), 300 + metrics.getHeight() * (i + 1));
+            }
 
             g2d.setFont(new Font("Arial", Font.PLAIN, 16));
             metrics = g2d.getFontMetrics();
